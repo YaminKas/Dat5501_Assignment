@@ -1,0 +1,24 @@
+version: 2.1
+
+jobs:
+  test:
+    docker:
+      - image: cimg/python:3.12
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: |
+            python -m pip install --upgrade pip
+            pip install pandas numpy matplotlib scipy statsmodels pytest
+      - run:
+          name: Run unit tests
+          command: |
+            pytest tests/ --maxfail=1 --disable-warnings -q
+
+workflows:
+  version: 2
+  test-workflow:
+    jobs:
+      - test
