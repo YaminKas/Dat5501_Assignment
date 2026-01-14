@@ -1,0 +1,16 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - run:
+          name: Sanity check
+          command: echo "CircleCI is running"
+
+workflows:
+  build_workflow:
+    jobs:
+      - build
