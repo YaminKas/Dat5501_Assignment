@@ -1,34 +1,37 @@
-# Dat5501_Assignment
+# DAT5501_Assignment
 
-# Education Attainment & Socioeconomic Analysis for Workforce Planning
+## Education Attainment & Socioeconomic Analysis for Workforce Planning
 
-## Project Overview
-This project analyses UK educational attainment data alongside socioeconomic indicators to explore patterns in learner outcomes. The goal is to provide insights for post-education employers on how students from different backgrounds perform, identify areas where additional support may be needed, and inform strategies to help learners thrive in the workforce.  
+This project analyses UK educational attainment and socioeconomic data to explore patterns in learner outcomes and workforce readiness. Focus areas include Level 2 & 3 attainment, gender differences, and deprivation scores across local authorities.
 
-The analysis focuses on the relationship between attainment at Level 2 and Level 3, gender differences, and deprivation scores across local authorities.
+## Datasets
 
----
+- `attainment_cleaned_female.csv` – Cleaned attainment data for female students.  
+- `attainment_cleaned_male.csv` – Cleaned attainment data for male students.  
+- `imd_data.csv` – Index of Multiple Deprivation scores by local authority.  
 
-## Datasets Used
-- **attainment_cleaned_female.csv** – Cleaned and reshaped attainment data for female students.  
-- **attainment_cleaned_male.csv** – Cleaned and reshaped attainment data for male students.  
-- **imd_data.csv** – Index of Multiple Deprivation (IMD) scores by local authority, providing socioeconomic context.  
-
-All datasets have been preprocessed to remove inconsistencies, handle missing values, and restructure data for analysis.
-
----
+> Note: Large datasets (e.g., `attainment_cleaned.csv`) are tracked with Git LFS and not included in the repo. Tests requiring these files will pass locally but may fail on GitHub CI.
 
 ## Project Structure
+
 DAT5501_Assignment/
 ├── data/
-│   ├── raw/              # Original raw data files
-│   ├── processed/        # Cleaned and processed datasets
-├── notebooks/            # Jupyter notebooks for exploratory analysis
+│   ├── raw/
+│   ├── processed/
+├── notebooks/
 ├── scripts/
-│   ├── cleaning/         # Data cleaning and preparation scripts
-│   ├── analysis/         # Scripts for merging datasets and running analyses
-├── figures/              # Generated plots and visualizations
-├── README.md             # Project overview and instructions
-└── requirements.txt      # Python dependencies
+│   ├── cleaning/
+│   ├── analysis/
+├── figures/
+├── .circleci/
+├── README.md
+└── requirements.txt
 
----
+## Setup
+
+```bash
+git clone https://github.com/YaminKas/DAT5501_Assignment.git
+cd DAT5501_Assignment
+pip install -r requirements.txt
+git lfs install
+git lfs pull
