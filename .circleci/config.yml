@@ -1,16 +1,36 @@
 version: 2.1
 
 jobs:
-  build:
+  test:
     docker:
-      - image: cimg/base:stable
+      - image: cimg/python:3.12  # Python version you use
+    working_directory: ~/repo
     steps:
       - checkout
+
+      # Install system dependencies (if needed)
       - run:
-          name: Sanity check
-          command: echo "CircleCI is running"
+          name: Install system deps
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y build-essential
+
+      # Install Python dependencies
+      - run:
+          name: Install Python deps
+          command: |
+            python -m pip install --upgrade pip
+            pip install -r requirements.txt
+            pip install pytest pytest-cov
+
+      # Run tests
+      - run:
+          name: Run pytest
+          command: |
+            pytest --maxfail=1 --disable-warnings -v
 
 workflows:
-  build_workflow:
+  version: 2
+  test_and_build:
     jobs:
-      - build
+      - test
