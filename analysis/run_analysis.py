@@ -19,17 +19,17 @@ from visualisations import create_visualisations
 def main():
     print("Starting full analysis workflow...\n")
 
-    # 1. Run exploratory data analysis
+    #Run exploratory data analysis
     print("Running EDA...")
     eda_main()
     print("EDA complete.\n")
 
-    # 2. Run statistics analysis
+    #Run statistics analysis
     print("Running statistics analysis...")
     run_statistics()
     print("Statistics analysis complete.\n")
 
-    # 3. Generate visualisations
+    #Generate visualisations
     print("Generating visualisations...")
     create_visualisations()
     print("Visualisations complete.\n")

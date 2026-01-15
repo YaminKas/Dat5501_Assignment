@@ -2,9 +2,8 @@
 
 import pandas as pd
 
-# ---------------------------
-# 1. Load data
-# ---------------------------
+
+#Load data
 def load_data():
     imd_path = '/Users/yaminkashim/DAT5501_lab/DAT5501_Assignment/data/processed/imd_cleaned.csv'
     male_path = '/Users/yaminkashim/DAT5501_lab/DAT5501_Assignment/data/merged/male_merged.csv'
@@ -17,9 +16,8 @@ def load_data():
     print("Files loaded successfully!\n")
     return imd, male, female
 
-# ---------------------------
-# 2. Dataset information
-# ---------------------------
+
+#Dataset information
 def dataset_info(df, name):
     print(f"\n=== {name} Dataset Info ===")
     print(df.info())
@@ -30,9 +28,8 @@ def dataset_info(df, name):
     print("\nMissing values per column:")
     print(df.isnull().sum())
 
-# ---------------------------
-# 3. IMD summary
-# ---------------------------
+
+#MD summary
 def imd_summary(imd):
     print("\nTop 5 most deprived areas (IMD rank):")
     print(imd[['la_name', 'imd_rank']].sort_values('imd_rank').head())
@@ -40,9 +37,8 @@ def imd_summary(imd):
     print("\nTop 5 least deprived areas (IMD rank):")
     print(imd[['la_name', 'imd_rank']].sort_values('imd_rank', ascending=False).head())
 
-# ---------------------------
-# 4. Attainment summary
-# ---------------------------
+#Attainment summary
+
 def attainment_summary(df, gender):
     print(f"\n{gender} attainment summary (value column):")
     print(df['value'].describe())
@@ -55,9 +51,8 @@ def attainment_summary(df, gender):
     print(f"\nBottom 5 local authorities by average {gender} attainment:")
     print(la_avg.tail())
 
-# ---------------------------
-# 5. Run all EDA
-# ---------------------------
+#Run all the analysis
+
 def run_eda():
     imd, male, female = load_data()
     
@@ -66,19 +61,17 @@ def run_eda():
     dataset_info(male, 'Male Attainment')
     dataset_info(female, 'Female Attainment')
     
-    # Quick analysis
+    # uick analysis
     imd_summary(imd)
     attainment_summary(male, 'Male')
     attainment_summary(female, 'Female')
 
-# ---------------------------
-# 6. Main function for import
-# ---------------------------
+
+#Main function for import
 def main():
     run_eda()
 
-# ---------------------------
-# 7. Execute if run directly
-# ---------------------------
+
+#Execute if run directly
 if __name__ == "__main__":
     main()

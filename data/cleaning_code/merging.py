@@ -15,7 +15,7 @@ male_df = pd.read_csv(male_file)
 female_df = pd.read_csv(female_file)
 imd_df = pd.read_csv(imd_file)
 
-# --- Male + IMD ---
+#Male + the IMD
 male_merged = pd.merge(
     male_df,
     imd_df,
@@ -27,7 +27,7 @@ male_merged = male_merged.drop(columns=['la_code'])
 male_merged.to_csv(os.path.join(output_folder, 'male_merged.csv'), index=False)
 print("Saved male_merged.csv")
 
-# --- Female + IMD ---
+# Female +  IMD
 female_merged = pd.merge(
     female_df,
     imd_df,
@@ -39,7 +39,7 @@ female_merged = female_merged.drop(columns=['la_code'])
 female_merged.to_csv(os.path.join(output_folder, 'female_merged.csv'), index=False)
 print("Saved female_merged.csv")
 
-# --- Combined Male & Female + IMD ---
+# Combined Male & Female + IMD 
 male_df_renamed = male_df.rename(columns={'value': 'value_male'})
 female_df_renamed = female_df.rename(columns={'value': 'value_female'})
 

@@ -13,10 +13,10 @@ def clean_dataset(filename):
     """Load merged dataset, drop rows with missing key data, and save cleaned version."""
     df = pd.read_csv(os.path.join(MERGED_DIR, filename))
     
-    # Drop rows where LA name, IMD rank, or attainment value are missing
+    #Drop rows where LA name, IMD rank, or attainment value are missing
     df_clean = df.dropna(subset=["la_name", "imd_rank", "value"])
     
-    # Optional: reset index
+    #Optional: reset index
     df_clean = df_clean.reset_index(drop=True)
     
     # Save cleaned version

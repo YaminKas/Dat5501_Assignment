@@ -18,9 +18,8 @@ def create_visualisations():
     figures_dir = '/Users/yaminkashim/DAT5501_lab/DAT5501_Assignment/analysis/figures'
     os.makedirs(figures_dir, exist_ok=True)
 
-    # --------------------------
+
     # IMD Distribution
-    # --------------------------
     plt.figure(figsize=(10,6))
     sns.histplot(imd['imd_rank'], bins=30, kde=True, color='steelblue')
     plt.title('Distribution of IMD Ranks')
@@ -29,9 +28,9 @@ def create_visualisations():
     plt.savefig(os.path.join(figures_dir, 'imd_distribution.png'))
     plt.close()
 
-    # --------------------------
+
     # Male Attainment Top/Bottom 5
-    # --------------------------
+
     male_avg = male.groupby('la_name')['value'].mean().reset_index()
 
     # Top 5
@@ -54,9 +53,9 @@ def create_visualisations():
     plt.savefig(os.path.join(figures_dir, 'bottom5_male_attainment.png'))
     plt.close()
 
-    # --------------------------
+
     # Female Attainment Top/Bottom 5
-    # --------------------------
+
     female_avg = female.groupby('la_name')['value'].mean().reset_index()
 
     # Top 5
@@ -81,9 +80,8 @@ def create_visualisations():
 
     print(f"All figures saved to {figures_dir}")
 
-    # --------------------------
     # IMD vs Attainment Scatter Plots
-    # --------------------------
+
 
     # Merge IMD with male and female averages
     male_imd = male_avg.merge(imd[['la_name', 'imd_rank']], on='la_name', how='inner')
@@ -130,9 +128,9 @@ def create_visualisations():
     plt.close()
 
 
-    # --------------------------
+
     # Combined Male vs Female IMD Scatter
-    # --------------------------
+
 
     combined = pd.concat([
         male_imd.assign(gender='Male'),

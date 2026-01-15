@@ -7,9 +7,8 @@ import statsmodels.api as sm
 
 
 def run_statistics():
-    # -----------------------------
-    # Paths
-    # -----------------------------
+    
+    # All the paths
     BASE_DIR = "/Users/yaminkashim/DAT5501_lab/DAT5501_Assignment"
 
     male_path = f"{BASE_DIR}/data/merged/male_merged.csv"
@@ -21,18 +20,18 @@ def run_statistics():
     os.makedirs(stats_dir, exist_ok=True)
     os.makedirs(figures_dir, exist_ok=True)
 
-    # -----------------------------
+    
     # Load data
-    # -----------------------------
+    
     male = pd.read_csv(male_path)
     female = pd.read_csv(female_path)
 
     male_clean = male[["la_name", "value", "imd_rank"]].dropna()
     female_clean = female[["la_name", "value", "imd_rank"]].dropna()
 
-    # -----------------------------
-    # C1. Correlation Analysis
-    # -----------------------------
+    
+    #Correlation Analysis
+    
     results = []
 
     for label, df in [("Male", male_clean), ("Female", female_clean)]:
@@ -50,9 +49,9 @@ def run_statistics():
     corr_df = pd.DataFrame(results)
     corr_df.to_csv(f"{stats_dir}/correlations.csv", index=False)
 
-    # -----------------------------
-    # C2. Gender Comparison (t-test)
-    # -----------------------------
+    
+    # Gender Comparison (t-test)
+    
     t_stat, p_val = ttest_ind(
         male_clean["value"],
         female_clean["value"],
@@ -68,9 +67,9 @@ def run_statistics():
 
     ttest_df.to_csv(f"{stats_dir}/gender_ttest_results.csv", index=False)
 
-    # -----------------------------
-    # C3. Regression Analysis
-    # -----------------------------
+    
+    #Regression Analysis
+    
     def run_regression(df, label):
         X = sm.add_constant(df["imd_rank"])
         y = df["value"]
@@ -90,9 +89,9 @@ def run_statistics():
     reg_df = pd.DataFrame([male_reg, female_reg])
     reg_df.to_csv(f"{stats_dir}/regression_results.csv", index=False)
 
-    # -----------------------------
-    # C4. Scatter + Regression Plots
-    # -----------------------------
+    
+    #Scatter + Regression Plots
+    
     def scatter_plot(df, model, title, filename):
         plt.figure(figsize=(8, 6))
         plt.scatter(df["imd_rank"], df["value"], alpha=0.4)
